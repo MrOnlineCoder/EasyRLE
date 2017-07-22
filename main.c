@@ -31,14 +31,14 @@ int main(int argc, char* argv[]) {
 	char* file = NULL;
 	char* out = NULL;
 
-    printf("* %s %s by %s *\n", RLE_NAME, RLE_VERSION, RLE_AUTHOR);
+	printf("* %s %s by %s *\n", RLE_NAME, RLE_VERSION, RLE_AUTHOR);
 
 	if (argc == 1) {
-        printf("%s\n", RLE_HELP);
-        return 0;
+		printf("%s\n", RLE_HELP);
+		return 0;
 	}
 
-	for (int i = 0;i<argc;i++) {
+	for (int i = 0; i < argc; i++) {
 		if (strcmp(argv[i], "--encode") == 0 || strcmp(argv[i], "-e") == 0) {
 			flag = RLE_ENCODE;
 			continue;
@@ -50,11 +50,11 @@ int main(int argc, char* argv[]) {
 		}
 
 		if (strcmp(argv[i], "--output") == 0 || strcmp(argv[i], "-o") == 0) {
-            if (i+1 >= argc) {
-                printf("ERROR: %s\n", RLE_ERR_INVALID_ARGS);
-                return 1;
-            }
-            out = argv[++i];
+			if (i + 1 >= argc) {
+				printf("ERROR: %s\n", RLE_ERR_INVALID_ARGS);
+				return 1;
+			}
+			out = argv[++i];
 			continue;
 		}
 

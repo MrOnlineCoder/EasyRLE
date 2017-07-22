@@ -1,25 +1,25 @@
 /*
-	MIT License
+    MIT License
 
-	Copyright (c) 2017 Nikita Kogut (github.com/MrOnlineCoder)
+    Copyright (c) 2017 Nikita Kogut (github.com/MrOnlineCoder)
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 */
 
 #include <stdio.h>
@@ -39,11 +39,11 @@ static void rle_write_block(RLE_BYTE* buff, RLE_BYTE* count) {
 
 int rle_process(int mode, char* file, char* file_out) {
     time_t start = time(NULL);
-	if (mode == RLE_INVALID) {
-		printf("ERROR: %s\n", RLE_ERR_INVALIDMODE);
-		return 1;
-	}
-	filename = file;
+    if (mode == RLE_INVALID) {
+        printf("ERROR: %s\n", RLE_ERR_INVALIDMODE);
+        return 1;
+    }
+    filename = file;
 
     fp = fopen(filename, "rb");
     if (fp == NULL) {
@@ -74,7 +74,7 @@ int rle_process(int mode, char* file, char* file_out) {
 
     fclose(fp);
     fclose(fp_out);
-	return 0;
+    return 0;
 }
 
 int rle_encode() {
@@ -94,7 +94,7 @@ int rle_encode() {
     byte = buffer;
     bytes++;
 
-    while(fread(&buffer, sizeof(RLE_BYTE), 1, fp) != 0) {
+    while (fread(&buffer, sizeof(RLE_BYTE), 1, fp) != 0) {
         if (byte == buffer) {
             count++;
             if (count == UCHAR_MAX) {
@@ -129,8 +129,8 @@ int rle_decode() {
 
     RLE_BYTE chunk[2]; /* first byte is count, second byte is value */
 
-    while(fread(&chunk, sizeof(RLE_BYTE), 2, fp) != 0) {
-        for (int i =0;i<chunk[0];i++) {
+    while (fread(&chunk, sizeof(RLE_BYTE), 2, fp) != 0) {
+        for (int i = 0; i < chunk[0]; i++) {
             fwrite(&chunk[1], sizeof(RLE_BYTE), 1, fp_out);
         }
 
